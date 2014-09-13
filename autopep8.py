@@ -165,8 +165,10 @@ def extended_blank_lines(logical_line,
             logical_line.startswith(('def ', 'class ', '@')) or
             pep8.DOCSTRING_REGEX.match(logical_line)
         ):
-            if indent_level and not blank_lines and not blank_before:
-                yield (0, 'E309 expected 1 blank line after class declaration')
+            # if indent_level:  # and not blank_lines and not blank_before:
+            if indent_level and blank_lines and blank_before:
+                # yield (0, 'E309 expected 1 blank line after class declaration')
+                yield (0, 'E303 too many blank lines ({0})'.format(blank_lines))
     elif previous_logical.startswith('def '):
         if blank_lines and pep8.DOCSTRING_REGEX.match(logical_line):
             yield (0, 'E303 too many blank lines ({0})'.format(blank_lines))
