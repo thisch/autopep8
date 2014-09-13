@@ -2756,11 +2756,7 @@ def commented_out_code_lines(source):
 
             if token_type == tokenize.COMMENT:
                 stripped_line = token_string.lstrip('#').strip()
-                if (
-                    ' ' in stripped_line and
-                    '#' not in stripped_line and
-                    check_syntax(stripped_line)
-                ):
+                if (check_syntax(stripped_line)):
                     line_numbers.append(start_row)
     except (SyntaxError, tokenize.TokenError):
         pass
